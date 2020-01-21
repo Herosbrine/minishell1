@@ -70,6 +70,6 @@ void info_file(char *filepath);
 //Programs
 char *one_space(char *buffer);
 char *delete_first_space(char *save);
-int read_user_input();
+char **read_user_input(char **argv, char **envp);
 
 #endif

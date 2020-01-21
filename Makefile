@@ -28,7 +28,7 @@ SRC =	src/printf/my_putchar.c \
 		src/printf/my_printf2.c	 \
 		src/printf/my_put_hexa_min.c \
 		src/printf/my_put_binary.c \
-		src/space.c \
+		src/read_line.c \
 		src/one_space.c \
 
 OBJ	=	$(SRC:.c=.o)
