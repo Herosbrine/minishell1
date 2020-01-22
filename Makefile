@@ -35,7 +35,11 @@ SRC =	src/printf/my_putchar.c \
 		src/one_space.c \
 		src/read_user_input.c \
 		src/my_strncomp.c  \
-		src/shell_loop.c
+		src/shell_loop.c	\
+		src/my_exit.c \
+		src/my_str_envp_array.c \
+		src/count_word_envp.c \
+		src/parsing_path.c \
 
 OBJ	=	$(SRC:.c=.o)
 

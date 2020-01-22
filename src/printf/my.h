@@ -63,5 +63,11 @@ char **read_user_input(char **argv, char **envp);
 char **count_word(char *buffer);
 char **position_a(int *a, char *buffer);
 int find_path(char **src);
+char **my_str_envp_array(int *a, char *buffer);
+int my_exit(char **argv);
+void parsing_path(char **envp);
+int count_word_envp(char *buffer);
+char **my_str_envp_array(int *a, char *buffer);
+void parsing_path(char **envp);
 
 #endif
