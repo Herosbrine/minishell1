@@ -9,20 +9,6 @@
 #define MY_H_
 #include <stdarg.h>
 
-typedef struct s_data t_data;
-struct s_data {
-    int size;
-    int params;
-    int matches;
-    int Lines;
-    int save;
-    char *buffer;
-    char *buffer2;
-    int *tab;
-    int save_2;
-    int *space;
-};
-
 //  EVAL_EXPR.C
 int eval_expr(char const *str);
 
@@ -71,5 +57,11 @@ void info_file(char *filepath);
 char *one_space(char *buffer);
 char *delete_first_space(char *save);
 char **read_user_input(char **argv, char **envp);
+int my_strcmp(char *s1, char *s2, int size);
+int shell_loop(char **argv, char **envp);
+char **read_user_input(char **argv, char **envp);
+char **count_word(char *buffer);
+char **position_a(int *a, char *buffer);
+int find_path(char **src);
 
 #endif

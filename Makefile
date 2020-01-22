@@ -28,8 +28,14 @@ SRC =	src/printf/my_putchar.c \
 		src/printf/my_printf2.c	 \
 		src/printf/my_put_hexa_min.c \
 		src/printf/my_put_binary.c \
-		src/read_line.c \
+		src/main.c \
+		src/count_word.c \
+		src/my_str_to_word_array.c \
+		src/find_path.c \
 		src/one_space.c \
+		src/read_user_input.c \
+		src/my_strncomp.c  \
+		src/shell_loop.c
 
 OBJ	=	$(SRC:.c=.o)
 
