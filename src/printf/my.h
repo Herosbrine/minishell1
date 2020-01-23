@@ -65,9 +65,9 @@ char **position_a(int *a, char *buffer);
 int find_path(char **src);
 char **my_str_envp_array(int *a, char *buffer);
 int my_exit(char **argv);
-void parsing_path(char **envp);
+int parsing_path(char **all_argv, char *argv, char **envp);
 int count_word_envp(char *buffer);
 char **my_str_envp_array(int *a, char *buffer);
-void parsing_path(char **envp);
+char *my_strcat(char *dest, char *src);
 
 #endif

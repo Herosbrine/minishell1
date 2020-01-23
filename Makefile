@@ -40,6 +40,7 @@ SRC =	src/printf/my_putchar.c \
 		src/my_str_envp_array.c \
 		src/count_word_envp.c \
 		src/parsing_path.c \
+		src/strcat.c \
 
 OBJ	=	$(SRC:.c=.o)
 

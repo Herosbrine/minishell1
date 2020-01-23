@@ -31,5 +31,6 @@ char **my_str_envp_array(int *a, char *buffer)
         r++;
         i = 0;
     }
+    a_position[k] = NULL;
     return (a_position);
 }

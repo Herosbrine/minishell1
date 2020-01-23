@@ -16,7 +16,6 @@ int main(int ac, char **argv, char **envp)
         my_printf("%s: No such file or directory.", argv[1]);
         return (1);
     }
-    parsing_path(envp);
     shell_loop(argv, envp);
     return (0);
 }
