@@ -41,7 +41,7 @@ int parsing_path(char **all_argv, char *argv, char **envp)
     char *envp2 =NULL;
     int result;
 
-    envp2 = strdup(&envp[i][5]);
+    envp2 = my_strdup(&envp[i][5]);
     test = my_str_envp_array(&total_word, envp2);
     for (int y = 0; test[y] != NULL; y++)
         my_strcat(test[y], argv);

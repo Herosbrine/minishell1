@@ -14,6 +14,7 @@ char **read_user_input(char **argv, char **envp)
 {
     size_t sizeb = 1000;
     char *buffer = NULL;
+    char *envp2 = my_strdup(&envp[30][5]);
 
     buffer = malloc(sizeof(char) * sizeb);
     if (getline(&buffer, &sizeb, stdin) == -1)
@@ -24,6 +25,8 @@ char **read_user_input(char **argv, char **envp)
     }
     buffer = one_space(buffer);
     argv = count_word(buffer);
+    if (my_cd(argv, argv[1], envp2) == 0)
+        return (0);
     my_exit(argv);
     parsing_path(argv, argv[0], envp);
     return (argv);

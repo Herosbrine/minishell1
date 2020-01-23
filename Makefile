@@ -41,6 +41,8 @@ SRC =	src/printf/my_putchar.c \
 		src/count_word_envp.c \
 		src/parsing_path.c \
 		src/strcat.c \
+		src/my_strdup.c \
+		src/my_cd.c \
 
 OBJ	=	$(SRC:.c=.o)
 
