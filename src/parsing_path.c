@@ -12,7 +12,6 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/wait.h>
-#include <sys/types.h>
 
 int launch_command(char **argv,  char **env, char *path)
 {
@@ -45,6 +44,7 @@ int parsing_path(char **all_argv, char *argv, char **envp)
     test = my_str_envp_array(&total_word, envp2);
     for (int y = 0; test[y] != NULL; y++)
         my_strcat(test[y], argv);
+
     for (int y = 0; test[y] != NULL; y++) {
         result = access(test[y], F_OK);
         if (result != -1) {
@@ -52,5 +52,9 @@ int parsing_path(char **all_argv, char *argv, char **envp)
             return (0);
         }
     }
-    return (1);
+    if (result == -1) {
+        my_printf("%s: Command not found.\n", argv);
+        return (0);
+    }
+    return (0);
 }

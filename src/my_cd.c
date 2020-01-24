@@ -40,10 +40,9 @@ int my_cd(char **argv, char *path, char *envp)
                 my_str_envp_ar(envp);
                 return (0);
             }
-			if (chdir(path) != 0) {
+			if (chdir(path) != 0)
                 my_printf("%s: No such file or directory.\n", path);
                 return (0);
-            }
         }
         i++;
     }
