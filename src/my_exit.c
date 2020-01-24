@@ -18,7 +18,7 @@ int my_exit(char **argv)
     dest = "exit";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 4) == 0) {
-			exit (0);
+            exit (0);
         }
         i++;
     }

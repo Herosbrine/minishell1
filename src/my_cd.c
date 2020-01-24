@@ -12,20 +12,18 @@
 #include "printf/my.h"
 #include <stdio.h>
 
-int find_home_path(char **src)
+int move_prev_dir(char *buffer)
 {
     int i = 0;
-    char *dest = NULL;
+    char *temp = NULL;
 
-    dest = "HOME=";
-    while (src[i] != NULL) {
-        if (my_strcmp(src[i], dest, 4) == 0) {
-			return (i);
-        }
+    temp = malloc(sizeof(char) * my_strlen(buffer));
+    while (buffer[i] != '\0') {
+        temp[i] = buffer[i];
         i++;
     }
-    my_putchar('\n');
-    return (i);
+    chdir(temp);
+    return (0);
 }
 
 char *my_str_envp_ar(char *buffer)
@@ -42,7 +40,26 @@ char *my_str_envp_ar(char *buffer)
     return (0);
 }
 
-int my_cd(char **argv, char *path, char *envp)
+int manage_cd(char *envp, char *envi, char *path)
+{
+    if (path == NULL) {
+        my_str_envp_ar(envp);
+        return (0);
+    }
+    if (chdir(path) == 0)
+        return (0);
+    if (path[0] == '-') {
+        move_prev_dir(envi);
+        return (0);
+    }
+    if (chdir(path) != 0) {
+        my_printf("%s: No such file or directory.\n", path);
+        return (0);
+    }
+    return (0);
+}
+
+int my_cd(char **argv, char *path, char *envp, char *envi)
 {
     int i = 0;
     char *dest = NULL;
@@ -50,14 +67,7 @@ int my_cd(char **argv, char *path, char *envp)
     dest = "cd";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 2) == 0) {
-            if (chdir(path) == 0)
-                return (0);
-            if (path == NULL) {
-                my_str_envp_ar(envp);
-                return (0);
-            }
-			if (chdir(path) != 0)
-                my_printf("%s: No such file or directory.\n", path);
+            if (manage_cd(envp, envi, path) == 0)
                 return (0);
         }
         i++;

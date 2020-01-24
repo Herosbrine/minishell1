@@ -18,7 +18,7 @@ int my_env(char **argv, char **env)
     dest = "env";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 3) == 0) {
-            for(int y = 0; env[y] != NULL; y++)
+            for (int y = 0; env[y] != NULL; y++)
                 my_printf("%s\n", env[y]);
             return (0);
         }

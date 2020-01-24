@@ -18,7 +18,7 @@ char **position_a(int *a, char *buffer)
     char **a_position = NULL;
     char *temp = NULL;
 
-    a_position = malloc(sizeof(char*) * *a + 1);
+    a_position = malloc(sizeof(char * ) * *a + 1);
     while (r < *a) {
         temp = malloc(sizeof(char) * my_strlen(buffer));
         i = 0;
