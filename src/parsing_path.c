@@ -49,6 +49,7 @@ int parsing_path(char **all_argv, char *argv, char **envp)
         result = access(test[y], F_OK);
         if (result != -1) {
             launch_command(all_argv, envp, test[y]);
+            free(test);
             return (0);
         }
     }

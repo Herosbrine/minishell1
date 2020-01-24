@@ -24,6 +24,6 @@ int main(int ac, char **argv, char **envp)
         }
         return (0);
     }
-    shell_loop(argv, envp, &cordonnee);
+    shell_loop(envp, &cordonnee);
     return (0);
 }
