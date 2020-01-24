@@ -12,13 +12,29 @@
 #include "printf/my.h"
 #include <stdio.h>
 
+int find_home_path(char **src)
+{
+    int i = 0;
+    char *dest = NULL;
+
+    dest = "HOME=";
+    while (src[i] != NULL) {
+        if (my_strcmp(src[i], dest, 4) == 0) {
+			return (i);
+        }
+        i++;
+    }
+    my_putchar('\n');
+    return (i);
+}
+
 char *my_str_envp_ar(char *buffer)
 {
     int i = 0;
     char *temp = NULL;
 
     temp = malloc(sizeof(char) * my_strlen(buffer));
-    while (buffer[i] != '.') {
+    while (buffer[i] != '\0') {
         temp[i] = buffer[i];
         i++;
     }

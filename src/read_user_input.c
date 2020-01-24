@@ -14,8 +14,8 @@ char **read_user_input(char **argv, char **envp, t_data *cordonnee)
 {
     size_t sizeb = 1000;
     char *buffer = NULL;
-    cordonnee->i = find_path(envp);
-    char *envp2 = my_strdup(&envp[cordonnee->i][5]);
+    cordonnee->y = find_home_path(envp);
+    char *envp2 = my_strdup(&envp[cordonnee->y][5]);
 
     buffer = malloc(sizeof(char) * sizeb);
     if (getline(&buffer, &sizeb, stdin) == -1)

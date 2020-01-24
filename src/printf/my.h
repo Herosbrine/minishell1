@@ -11,7 +11,7 @@
 
 typedef struct s_data t_data;
 struct s_data {
-    int i;
+    int y;
 };
 
 //  EVAL_EXPR.C
@@ -76,5 +76,6 @@ char *my_strcat(char *dest, char *src);
 char *my_strdup(char* str);
 int my_cd(char **argv, char *path, char *envp);
 int my_unsetenv(char **argv, char *path);
+int find_home_path(char **src);
 
 #endif
