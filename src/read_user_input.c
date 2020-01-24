@@ -10,15 +10,16 @@
 #include <stdio.h>
 #include "printf/my.h"
 
-char **read_user_input(char **argv, char **envp)
+char **read_user_input(char **argv, char **envp, t_data *cordonnee)
 {
     size_t sizeb = 1000;
     char *buffer = NULL;
-    char *envp2 = my_strdup(&envp[30][5]);
+    cordonnee->i = find_path(envp);
+    char *envp2 = my_strdup(&envp[cordonnee->i][5]);
 
     buffer = malloc(sizeof(char) * sizeb);
     if (getline(&buffer, &sizeb, stdin) == -1)
-        exit (84);
+        exit (0);
     for (int i = 0; buffer[i] != '\0'; i++) {
         if (buffer[i] == '\n')
             buffer[i] = '\0';

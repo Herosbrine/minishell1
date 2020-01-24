@@ -12,10 +12,12 @@
 
 int main(int ac, char **argv, char **envp)
 {
+    t_data cordonnee;
+
     if (ac > 1) {
         my_printf("%s: No such file or directory.", argv[1]);
         return (1);
     }
-    shell_loop(argv, envp);
+    shell_loop(argv, envp, &cordonnee);
     return (0);
 }
