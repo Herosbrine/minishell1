@@ -28,6 +28,8 @@ char **read_user_input(char **argv, char **envp, t_data *cordonnee)
     argv = count_word(buffer);
     if (my_cd(argv, argv[1], envp2) == 0)
         return (0);
+    if (my_unsetenv(argv, argv[1]) == 0)
+        return (0);
     my_exit(argv);
     if (parsing_path(argv, argv[0], envp) == 0)
         shell_loop(argv, envp, cordonnee);

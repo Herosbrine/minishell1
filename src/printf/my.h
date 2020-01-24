@@ -75,5 +75,6 @@ char **my_str_envp_array(int *a, char *buffer);
 char *my_strcat(char *dest, char *src);
 char *my_strdup(char* str);
 int my_cd(char **argv, char *path, char *envp);
+int my_unsetenv(char **argv, char *path);
 
 #endif
