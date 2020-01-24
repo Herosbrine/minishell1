@@ -63,7 +63,7 @@ char *one_space(char *buffer);
 char *delete_first_space(char *save);
 int my_strcmp(char *s1, char *s2, int size);
 int shell_loop(char **argv, char **envp, t_data *cordonnee);
-char **read_user_input(char **argv, char **envp, t_data *cordonnee);
+char **read_user_input(char **argv);
 char **count_word(char *buffer);
 char **position_a(int *a, char *buffer);
 int find_path(char **src);
@@ -79,5 +79,6 @@ int my_unsetenv(char **argv, char *path);
 int find_home_path(char **src);
 int my_setenv(char **argv, char *path, char *path2, char **envp);
 char *my_strcat2(char *dest, char *src);
+int check_command(char **argv, char **envp, t_data *cordonnee);
 
 #endif
