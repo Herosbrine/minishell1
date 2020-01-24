@@ -47,6 +47,7 @@ SRC =	src/printf/my_putchar.c \
 		src/my_unsetenv.c \
 		src/my_strcat2.c \
 		src/check_command.c \
+		src/my_env.c \
 
 OBJ	=	$(SRC:.c=.o)
 

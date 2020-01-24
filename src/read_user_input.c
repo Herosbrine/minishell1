@@ -15,9 +15,7 @@ char **read_user_input()
     size_t sizeb = 1000;
     char **argv_parsed = NULL;
     char *buffer = NULL;
-    char *buffer2 = NULL;
 
-    buffer2 = malloc(sizeof(char) * 1000);
     buffer = malloc(sizeof(char) * 1000);
     if (getline(&buffer, &sizeb, stdin) == -1)
         exit (0);
@@ -25,9 +23,8 @@ char **read_user_input()
         if (buffer[i] == '\n')
             buffer[i] = '\0';
     }
-    buffer2 = one_space(buffer);
-    argv_parsed = count_word(buffer2);
+    buffer = one_space(buffer);
+    argv_parsed = count_word(buffer);
     free(buffer);
-    free(buffer2);
     return (argv_parsed);
 }

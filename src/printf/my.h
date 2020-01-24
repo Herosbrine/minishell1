@@ -80,5 +80,6 @@ int find_home_path(char **src);
 int my_setenv(char **argv, char *path, char *path2, char **envp);
 char *my_strcat2(char *dest, char *src);
 int check_command(char **argv, char **envp, t_data *cordonnee);
+int my_env(char **argv, char **env);
 
 #endif

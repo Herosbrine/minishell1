@@ -31,5 +31,6 @@ char **position_a(int *a, char *buffer)
         k++;
         r++;
     }
+    a_position[k] = NULL;
     return (a_position);
 }
