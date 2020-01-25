@@ -12,12 +12,12 @@
 
 char **read_user_input(char **envp, t_data *cordonnee)
 {
-    size_t sizeb = 1000;
+    size_t sizeb = 300;
     char **argv_parsed = NULL;
-    char *buffer = NULL;
+    char *buffer;
     int i = 0;
 
-    buffer = malloc(sizeof(char) * sizeb);
+    buffer = malloc(sizeof(char) * 300);
     if (getline(&buffer, &sizeb, stdin) == -1)
         exit (0);
     if (buffer[i] == '\n')

@@ -16,7 +16,6 @@ char **count_word(char *buffer)
     int a = 1;
     char **argv = NULL;
 
-    argv = malloc(sizeof(char * ) * 1000);
     if (buffer[i] == '\0')
         a = 0;
     while (buffer[i] != '\0') {
