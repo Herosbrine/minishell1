@@ -63,6 +63,10 @@ int my_cd(char **argv, char *path, char *envp, char *envi)
 {
     int i = 0;
     char *dest = NULL;
+    char *pwd = NULL;
+
+    pwd = malloc(sizeof(char) * 100);
+    getcwd(pwd, 100);
 
     dest = "cd";
     while (argv[i] != NULL) {

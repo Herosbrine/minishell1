@@ -64,7 +64,7 @@ char *one_space(char *buffer);
 char *delete_first_space(char *save);
 int my_strcmp(char *s1, char *s2, int size);
 int shell_loop(char **envp, t_data *cordonnee);
-char **read_user_input();
+char **read_user_input(char **envp, t_data *cordonnee);
 char **count_word(char *buffer);
 char **position_a(int *a, char *buffer);
 int find_path(char **src);

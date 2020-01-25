@@ -17,7 +17,7 @@ int shell_loop(char **envp, t_data *cordonnee)
 
     while (leave == 1) {
         my_putstr("$> ");
-        argv_parsed = read_user_input();
+        argv_parsed = read_user_input(envp, cordonnee);
         check_command(argv_parsed, envp, cordonnee);
         free(argv_parsed);
     }
