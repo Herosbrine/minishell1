@@ -20,11 +20,11 @@ int my_setenv_env1(char *path, char **envp)
     char *toto = my_strcat2(path, "=");
 
     while (envp[i] != NULL) {
-            if (my_strcmp(envp[i], toto, my_strlen(toto)-1) == 0) {
-                a = i;
-                envp[a] = path;
-                return (0);
-            }
+        if (my_strcmp(envp[i], toto, my_strlen(toto)-1) == 0) {
+            a = i;
+            envp[a] = path;
+            return (0);
+        }
         i++;
     }
     envp[i] = path;
@@ -40,11 +40,11 @@ int my_setenv_env2(char *path, char *path2, char **envp)
     int a = 0;
 
     while (envp[i] != NULL) {
-            if (my_strcmp(envp[i], toto, my_strlen(toto)-1) == 0) {
-                a = i;
-                envp[a] = my_strcat2(path, path2);
-                return (0);
-            }
+        if (my_strcmp(envp[i], toto, my_strlen(toto)-1) == 0) {
+            a = i;
+            envp[a] = my_strcat2(path, path2);
+            return (0);
+        }
         i++;
     }
     path_mix = my_strcat2(path, path2);
