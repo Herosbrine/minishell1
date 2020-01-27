@@ -65,7 +65,7 @@ int my_setenv(char **argv, char *path, char *path2, char **envp)
                 my_setenv_env1(path, envp);
                 return (0);
             }
-            if (path != NULL && path2 != NULL) {
+            if (path != NULL && path2 != NULL && argv[3] == NULL) {
                 my_setenv_env2(path, path2, envp);
                 return (0);
             }
@@ -74,9 +74,11 @@ int my_setenv(char **argv, char *path, char *path2, char **envp)
                     my_printf("%s\n", envp[y]);
                 return (0);
             }
-        i++;
+            else
+                my_printf("setenv: Too many arguments.\n");
+            return (0);
         }
-        return (1);
+        i++;
     }
     return (1);
 }
