@@ -20,8 +20,6 @@ int my_unsetenv(char **argv, char *path)
     dest = "unsetenv";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 8) == 0) {
-            if (unsetenv(path) == 0)
-                return (0);
             if (path == NULL) {
                 my_printf("%s: Too few arguments.\n", dest);
                 return (0);
