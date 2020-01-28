@@ -76,7 +76,7 @@ char **my_str_envp_array(int *a, char *buffer);
 char *my_strcat(char *dest, char *src);
 char *my_strdup(char *str);
 int my_cd(char **argv, char *path, char *envp, char *envi);
-int my_unsetenv(char **argv, char *path);
+int my_unsetenv(char **argv, char **envp);
 int find_home_path(char **src);
 int my_setenv(char **argv, char *path, char *path2, char **envp);
 char *my_strcat2(char *dest, char *src);
