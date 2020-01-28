@@ -17,6 +17,7 @@ int main(int ac, char **argv, char **envp)
     t_data cordonnee;
     struct stat info_file;
 
+    cordonnee.envp = envp;
     if (ac > 1) {
         if (lstat(argv[1], &info_file) == -1) {
             my_printf("%s: No such file or directory.", argv[1]);

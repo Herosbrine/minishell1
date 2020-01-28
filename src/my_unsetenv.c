@@ -12,7 +12,7 @@
 #include "printf/my.h"
 #include <stdio.h>
 
-char **my_unsetenv2(char *argv, char **envp)
+char **my_unsetenv2(char *argv, t_data *cordonnee)
 {
     int a = 0;
     int r = 0;
@@ -21,28 +21,30 @@ char **my_unsetenv2(char *argv, char **envp)
 
     save = malloc(sizeof(char*) * 10000);
     toto = my_strcat2(argv, "=");
-    while (envp[a] != NULL) {
-        if (my_strcmp(envp[a], toto, my_strlen(toto) - 1 ) == 0) {
+    while (cordonnee->envp[a] != NULL) {
+        if (my_strcmp(cordonnee->envp[a], toto, my_strlen(toto) - 1 ) == 0) {
             a++;
-            /*if (envp[a] == NULL) {
-                my_printf("env : %s\n", envp[a]);
+            if (cordonnee->envp[a] == NULL) {
                 r++;
-                break;
-            }*/
+                save[r] = NULL;
+                cordonnee->envp = save;
+                return (0);
+            }
         }
-        save[r] = envp[a];
+        save[r] = cordonnee->envp[a];
         a++;
         r++;
     }
     save[r] = NULL;
-    envp = save;
-    return (envp);
+    cordonnee->envp = save;
+    return (cordonnee->envp);
 }
 
-int my_unsetenv(char **argv, char **envp)
+int my_unsetenv(char **argv, t_data *cordonnee)
 {
     int i = 0;
     char *dest = NULL;
+    int y = 1;
 
     dest = "unsetenv";
     while (argv[i] != NULL) {
@@ -52,8 +54,11 @@ int my_unsetenv(char **argv, char **envp)
                 return (0);
             }
             else {
-                for (int y = 1; argv[y] != NULL; y++)
-                    envp = my_unsetenv2(argv[y], envp);
+                while (argv[y] != NULL) {
+                    my_unsetenv2(argv[y], cordonnee);
+                    y++;
+                }
+                return (0);
             }
             return (0);
         i++;
