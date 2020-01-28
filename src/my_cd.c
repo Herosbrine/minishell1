@@ -81,7 +81,6 @@ int my_cd(char **argv, char **envp, char *envi)
         if (my_strcmp(argv[i], dest, 2) == 0) {
             if (argv[1] != NULL && argv[1][0] == '-') {
                 return (0);
-                move_prev_dir(envp);
             }
             if (manage_cd(envp, envi, argv[1]) == 0)
                 return (0);

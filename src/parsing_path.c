@@ -36,7 +36,7 @@ int launch_command(char **argv,  char **env, char *path)
 int manage_result(int *result, char **all_argv, char **test, char **envp)
 {
     for (int y = 0; test[y] != NULL; y++) {
-        *result = access(test[y], F_OK);
+        *result = access(test[y], X_OK);
         if (*result != -1) {
             launch_command(all_argv, envp, test[y]);
             free(test);
