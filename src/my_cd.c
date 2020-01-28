@@ -87,6 +87,7 @@ int my_cd(char **argv, char **envp, char *envi)
     dest = "cd";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 2) == 0) {
+            getcwd(pwd, sizeof(pwd));
             old_pwd(envp);
             if (manage_cd(envp, envi, argv[1], pwd) == 0)
                 return (0);
