@@ -85,7 +85,7 @@ char *my_str_envp_ar(char *buffer)
 
 int manage_cd(char **envp, char *envi, char *path)
 {
-    if (path == NULL) {
+    if (path == NULL || path[0] == '~') {
         my_str_envp_ar(envi);
         new_pwd(envp);
         return (0);
