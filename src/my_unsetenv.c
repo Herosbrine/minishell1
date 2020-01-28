@@ -23,6 +23,7 @@ int my_unsetenv2(char **argv, char **envp)
         while (envp[a] != NULL) {
             if (my_strcmp(envp[a], toto, my_strlen(toto) - 1 ) == 0) {
                 envp[a] = NULL;
+                a++;
             }
             a++;
         }

@@ -16,7 +16,7 @@ int check_command(char **argv, char **envp, t_data *cordonnee)
     cordonnee->pwd = find_pwd_path(envp);
     char *envi = NULL;
 
-    envi = my_strdup(&envp[cordonnee->pwd][4]);
+    envi = my_strdup(&envp[cordonnee->y][5]);
     if (my_env(argv, envp) == 0)
         return (0);
     if (my_cd(argv, envp, envi) == 0)
