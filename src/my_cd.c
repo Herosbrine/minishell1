@@ -101,31 +101,6 @@ int manage_cd(char **envp, char *envi, char *path)
     return (0);
 }
 
-int *old_pwd(char **envp)
-{
-    int i = 0;
-    char *toto = NULL;
-    char *save = NULL;
-    int a = 0;
-
-    save = malloc(sizeof(char) * 100);
-    toto = "OLDPWD=";
-    char pwd[PATH_MAX];
-    getcwd(pwd, sizeof(pwd));
-    while(envp[i] != NULL) {
-        if (my_strcmp(envp[i], toto, 6) == 0) {
-            while (envp[i][a] != '/') {
-                save[a] = envp[i][a];
-                a++;
-            }
-            envp[i] = NULL;
-            envp[i] = strcat(save, pwd);
-        }
-        i++;
-    }
-    return (0);
-}
-
 int my_cd(char **argv, char **envp, char *envi)
 {
     int i = 0;
@@ -138,7 +113,6 @@ int my_cd(char **argv, char **envp, char *envi)
                 return (0);
                 move_prev_dir(envp);
             }
-            old_pwd(envp);
             if (manage_cd(envp, envi, argv[1]) == 0)
                 return (0);
         }

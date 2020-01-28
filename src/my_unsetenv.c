@@ -12,25 +12,31 @@
 #include "printf/my.h"
 #include <stdio.h>
 
-int my_unsetenv2(char **argv, char **envp)
+char **my_unsetenv2(char *argv, char **envp)
 {
-    int i = 1;
     int a = 0;
+    int r = 0;
     char *toto = NULL;
+    char **save = NULL;
 
-    while (argv[i] != NULL) {
-        toto = my_strcat2(argv[i], "=");
-        while (envp[a] != NULL) {
-            if (my_strcmp(envp[a], toto, my_strlen(toto) - 1 ) == 0) {
-                envp[a] = NULL;
-                a++;
-            }
+    save = malloc(sizeof(char*) * 10000);
+    toto = my_strcat2(argv, "=");
+    while (envp[a] != NULL) {
+        if (my_strcmp(envp[a], toto, my_strlen(toto) - 1 ) == 0) {
             a++;
+            /*if (envp[a] == NULL) {
+                my_printf("env : %s\n", envp[a]);
+                r++;
+                break;
+            }*/
         }
-        a = 0;
-        i++;
+        save[r] = envp[a];
+        a++;
+        r++;
     }
-    return (0);
+    save[r] = NULL;
+    envp = save;
+    return (envp);
 }
 
 int my_unsetenv(char **argv, char **envp)
@@ -45,8 +51,10 @@ int my_unsetenv(char **argv, char **envp)
                 my_printf("%s: Too few arguments.\n", dest);
                 return (0);
             }
-            else
-                my_unsetenv2(argv, envp);
+            else {
+                for (int y = 1; argv[y] != NULL; y++)
+                    envp = my_unsetenv2(argv[y], envp);
+            }
             return (0);
         i++;
         }
