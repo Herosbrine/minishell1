@@ -38,37 +38,7 @@ int *new_pwd(char **envp)
     }
     return (0);
 }
-/*
-int move_prev_dir(char **envp)
-{
-    int i = 0;
-    int a = 0;
-    int r = 0;
-    char *toto = NULL;
-    char *save = NULL;
 
-    toto = "OLDPWD=";
-    save = malloc(sizeof(char) * 100);
-    while(envp[i] != NULL) {
-        if (my_strcmp(envp[i], toto, 6) == 0) {
-            while (envp[i][a] != '/') {
-                my_printf("envp[r] : %s\n", envp[i][a]);
-                a++;
-            }
-            while (envp[i][a] != '\0') {
-                save[r] = envp[i][a];
-                my_printf("save[r] : %s\n", save);
-                r++;
-                a++;
-            }
-        }
-        i++;
-    }
-    my_printf("save : %s\n", save);
-    chdir(save);
-    return (0);
-}
-*/
 char *my_str_envp_ar(char *buffer)
 {
     int i = 0;
