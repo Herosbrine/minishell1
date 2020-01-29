@@ -14,14 +14,12 @@
 
 char **my_unsetenv2(char *argv, t_data *cordonnee)
 {
-    int a = 0;
-    int r = 0;
-    char *toto = NULL;
-    char **save = NULL;
+    int a = 0, r = 0;
+    char *toto = NULL, **save = NULL;
 
-    save = malloc(sizeof(char*) * 10000);
+    save = malloc(sizeof(char * ) * 10000);
     toto = my_strcat2(argv, "=");
-    while (cordonnee->envp[a] != NULL) {
+    for (; cordonnee->envp[a] != NULL; a++, r++) {
         if (my_strcmp(cordonnee->envp[a], toto, my_strlen(toto) - 1 ) == 0) {
             a++;
             if (cordonnee->envp[a] == NULL) {
@@ -32,12 +30,26 @@ char **my_unsetenv2(char *argv, t_data *cordonnee)
             }
         }
         save[r] = cordonnee->envp[a];
-        a++;
-        r++;
     }
     save[r] = NULL;
     cordonnee->envp = save;
     return (cordonnee->envp);
+}
+
+int my_unsetenv_condition(int *y, char *dest, char **argv, t_data *cordonnee)
+{
+    if (argv[1] == NULL) {
+        my_printf("%s: Too few arguments.\n", dest);
+        return (0);
+    }
+    else {
+        while (argv[*y] != NULL) {
+            my_unsetenv2(argv[*y], cordonnee);
+            (*y)++;
+        }
+        return (0);
+    }
+    return (0);
 }
 
 int my_unsetenv(char **argv, t_data *cordonnee)
@@ -49,19 +61,9 @@ int my_unsetenv(char **argv, t_data *cordonnee)
     dest = "unsetenv";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 8) == 0) {
-            if (argv[1] == NULL) {
-                my_printf("%s: Too few arguments.\n", dest);
-                return (0);
-            }
-            else {
-                while (argv[y] != NULL) {
-                    my_unsetenv2(argv[y], cordonnee);
-                    y++;
-                }
-                return (0);
-            }
+            my_unsetenv_condition(&y, dest, argv, cordonnee);
             return (0);
-        i++;
+            i++;
         }
         return (1);
     }

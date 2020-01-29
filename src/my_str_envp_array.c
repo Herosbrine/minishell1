@@ -12,9 +12,7 @@
 
 char **my_str_envp_array(int *a, char *buffer)
 {
-    int k = 0;
-    int i = 0;
-    int r = 0;
+    int k = 0, i = 0, r = 0;
     char **a_position = NULL;
     char *temp = NULL;
 

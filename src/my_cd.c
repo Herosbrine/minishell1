@@ -17,22 +17,21 @@
 int *new_pwd(char **envp)
 {
     int i = 0;
-    char *toto = NULL;
-    char *save = NULL;
+    char *toto = NULL, *save = NULL;
     int a = 0;
 
     save = malloc(sizeof(char) * 100);
     toto = "PWD=";
     char pwd[PATH_MAX];
     getcwd(pwd, sizeof(pwd));
-    while(envp[i] != NULL) {
+    while (envp[i] != NULL) {
         if (my_strcmp(envp[i], toto, 3) == 0) {
             while (envp[i][a] != '/') {
                 save[a] = envp[i][a];
                 a++;
             }
             envp[i] = NULL;
-            envp[i] = strcat(save, pwd);
+            envp[i] = my_strcat2(save, pwd);
         }
         i++;
     }
