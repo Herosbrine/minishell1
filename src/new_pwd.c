@@ -16,9 +16,8 @@
 
 int *new_pwd(char **envp)
 {
-    int i = 0;
+    int i = 0, a = 0;
     char *toto = NULL, *save = NULL;
-    int a = 0;
 
     save = malloc(sizeof(char) * 100);
     toto = "PWD=";

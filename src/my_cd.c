@@ -14,7 +14,7 @@
 #include <string.h>
 #include <limits.h>
 
-char *my_str_envp_ar(char *buffer)
+int my_str_envp_ar(char *buffer)
 {
     int i = 0;
     char *temp = NULL;
@@ -41,7 +41,7 @@ int manage_cd(char **envp, char *envi, char *path)
     }
     if (chdir(path) != 0) {
         my_printf("%s: No such file or directory.\n", path);
-        return (0);
+        return (1);
     }
     return (0);
 }
@@ -69,6 +69,7 @@ int my_cd(char **argv, char **envp, char *envi, t_data *cordonnee)
                 save_pwd(cordonnee);
                 return (0);
             }
+            return (0);
         }
         i++;
     }
