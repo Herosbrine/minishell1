@@ -12,8 +12,10 @@
 typedef struct s_data t_data;
 struct s_data {
     int y;
+    int r;
     int pwd;
     char **envp;
+    char **save_pwd;
 };
 
 //  EVAL_EXPR.C
@@ -76,7 +78,7 @@ int count_word_envp(char *buffer);
 char **my_str_envp_array(int *a, char *buffer);
 char *my_strcat(char *dest, char *src);
 char *my_strdup(char *str);
-int my_cd(char **argv, char **envp, char *envi);
+int my_cd(char **argv, char **envp, char *envi, t_data *cordonnee);
 int my_unsetenv(char **argv, t_data *cordonnee);
 int find_home_path(char **src);
 int my_setenv(char **argv, t_data *cordonnee);
@@ -84,5 +86,8 @@ char *my_strcat2(char *dest, char *src);
 int check_command(char **argv, char **envp, t_data *cordonnee);
 int my_env(char **argv, t_data *cordonnee);
 int find_pwd_path(char **src);
+int save_pwd(t_data *cordonnee);
+int *new_pwd(char **envp);
+void init_struct(t_data *cordonnee);
 
 #endif

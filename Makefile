@@ -48,6 +48,9 @@ SRC =	src/printf/my_putchar.c \
 		src/my_strcat2.c \
 		src/check_command.c \
 		src/my_env.c \
+		src/new_pwd.c \
+		src/save_pwd.c \
+		src/init_struct.c \
 
 OBJ	=	$(SRC:.c=.o)
 

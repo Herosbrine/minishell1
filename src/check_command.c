@@ -19,7 +19,7 @@ int check_command(char **argv, char **envp, t_data *cordonnee)
     envi = my_strdup(&envp[cordonnee->y][5]);
     if (my_env(argv, cordonnee) == 0)
         return (0);
-    if (my_cd(argv, envp, envi) == 0)
+    if (my_cd(argv, envp, envi, cordonnee) == 0)
         return (0);
     if (my_unsetenv(argv, cordonnee) == 0)
         return (0);

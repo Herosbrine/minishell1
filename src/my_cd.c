@@ -14,30 +14,6 @@
 #include <string.h>
 #include <limits.h>
 
-int *new_pwd(char **envp)
-{
-    int i = 0;
-    char *toto = NULL, *save = NULL;
-    int a = 0;
-
-    save = malloc(sizeof(char) * 100);
-    toto = "PWD=";
-    char pwd[PATH_MAX];
-    getcwd(pwd, sizeof(pwd));
-    while (envp[i] != NULL) {
-        if (my_strcmp(envp[i], toto, 3) == 0) {
-            while (envp[i][a] != '/') {
-                save[a] = envp[i][a];
-                a++;
-            }
-            envp[i] = NULL;
-            envp[i] = my_strcat2(save, pwd);
-        }
-        i++;
-    }
-    return (0);
-}
-
 char *my_str_envp_ar(char *buffer)
 {
     int i = 0;
@@ -70,7 +46,14 @@ int manage_cd(char **envp, char *envi, char *path)
     return (0);
 }
 
-int my_cd(char **argv, char **envp, char *envi)
+int my_cd_prev_dir(t_data *cordonnee)
+{
+    chdir(cordonnee->save_pwd[cordonnee->r-2]);
+    save_pwd(cordonnee);
+    return (0);
+}
+
+int my_cd(char **argv, char **envp, char *envi, t_data *cordonnee)
 {
     int i = 0;
     char *dest = NULL;
@@ -79,10 +62,13 @@ int my_cd(char **argv, char **envp, char *envi)
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 2) == 0) {
             if (argv[1] != NULL && argv[1][0] == '-') {
+                my_cd_prev_dir(cordonnee);
                 return (0);
             }
-            if (manage_cd(envp, envi, argv[1]) == 0)
+            if (manage_cd(envp, envi, argv[1]) == 0) {
+                save_pwd(cordonnee);
                 return (0);
+            }
         }
         i++;
     }

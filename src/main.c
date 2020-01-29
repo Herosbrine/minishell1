@@ -27,6 +27,7 @@ int main(int ac, char **argv, char **envp)
         }
         return (0);
     }
+    init_struct(&cordonnee);
     shell_loop(envp, &cordonnee);
     return (0);
 }
