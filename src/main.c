@@ -17,6 +17,8 @@ int main(int ac, char **argv, char **envp)
     t_data cordonnee;
     struct stat info_file;
 
+    if (envp[0] == NULL)
+        return (84);
     cordonnee.envp = envp;
     if (ac > 1) {
         if (lstat(argv[1], &info_file) == -1) {

@@ -79,7 +79,7 @@ char *my_strdup(char *str);
 int my_cd(char **argv, char **envp, char *envi);
 int my_unsetenv(char **argv, t_data *cordonnee);
 int find_home_path(char **src);
-int my_setenv(char **argv, char *path, char *path2, t_data *cordonnee);
+int my_setenv(char **argv, t_data *cordonnee);
 char *my_strcat2(char *dest, char *src);
 int check_command(char **argv, char **envp, t_data *cordonnee);
 int my_env(char **argv, t_data *cordonnee);

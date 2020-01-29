@@ -13,47 +13,47 @@
 #include <stdio.h>
 #include <string.h>
 
-int my_setenv_env1(char *path, t_data *cordonnee)
+int my_setenv_env1(char *argv, t_data *cordonnee)
 {
     int i = 0;
     int a = 0;
-    char *toto = my_strcat2(path, "=");
+    char *toto = my_strcat2(argv, "=");
 
     while (cordonnee->envp[i] != NULL) {
         if (my_strcmp(cordonnee->envp[i], toto, my_strlen(toto)-1) == 0) {
             a = i;
-            cordonnee->envp[a] = path;
+            cordonnee->envp[a] = my_strdup(argv);
             return (0);
         }
         i++;
     }
-    cordonnee->envp[i] = path;
+    cordonnee->envp[i] = my_strdup(argv);
     cordonnee->envp[i+1] = NULL;
     return (0);
 }
 
-int my_setenv_env2(char *path, char *path2, t_data *cordonnee)
+int my_setenv_env2(char *argv, char *argv2, t_data *cordonnee)
 {
     int i = 0;
-    char *path_mix = NULL;
-    char *toto = my_strcat2(path, "=");
+    char *argv_mix = NULL;
+    char *toto = my_strcat2(argv, "=");
     int a = 0;
 
     while (cordonnee->envp[i] != NULL) {
         if (my_strcmp(cordonnee->envp[i], toto, my_strlen(toto)-1) == 0) {
             a = i;
-            cordonnee->envp[a] = my_strcat2(path, path2);
+            cordonnee->envp[a] = my_strcat2(argv, argv2);
             return (0);
         }
         i++;
     }
-    path_mix = my_strcat2(path, path2);
-    cordonnee->envp[i] = path_mix;
+    argv_mix = my_strcat2(argv, argv2);
+    cordonnee->envp[i] = my_strdup(argv_mix);
     cordonnee->envp[i+1] = NULL;
     return (0);
 }
 
-int my_setenv(char **argv, char *path, char *path2, t_data *cordonnee)
+int my_setenv(char **argv, t_data *cordonnee)
 {
     int i = 0;
     char *dest = NULL;
@@ -61,15 +61,15 @@ int my_setenv(char **argv, char *path, char *path2, t_data *cordonnee)
     dest = "setenv\0";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 6) == 0) {
-            if (path != NULL && path2 == NULL) {
-                my_setenv_env1(path, cordonnee);
+            if (argv[1] != NULL && argv[2] == NULL) {
+                my_setenv_env1(argv[1], cordonnee);
                 return (0);
             }
-            if (path != NULL && path2 != NULL && argv[3] == NULL) {
-                my_setenv_env2(path, path2, cordonnee);
+            if (argv[1] != NULL && argv[2] != NULL && argv[3] == NULL) {
+                my_setenv_env2(argv[1], argv[2], cordonnee);
                 return (0);
             }
-            if (path == NULL) {
+            if (argv[1] == NULL) {
                 for (int y = 0; cordonnee->envp[y] != NULL; y++)
                     my_printf("%s\n", cordonnee->envp[y]);
                 return (0);
