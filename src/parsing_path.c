@@ -30,6 +30,13 @@ int launch_command(char **argv,  char **env, char *path)
     }
     else
         wait(&status);
+    if (WIFSIGNALED(status)) {
+        write(2, strsignal(WTERMSIG(status)),
+        my_strlen(strsignal(WTERMSIG(status))));
+        if (WCOREDUMP(status))
+            write(2, " (core dumped)",14);
+        write(2, "\n", 1);
+    }
     return 0;
 }
 
@@ -48,8 +55,7 @@ int manage_result(int *result, char **all_argv, char **test, char **envp)
 
 int parsing_path(char **all_argv, char *argv, char **envp)
 {
-    int i = find_path(envp);
-    int total_word = count_word_envp(envp[i]);
+    int i = find_path(envp), total_word = count_word_envp(envp[i]);
     char **test = NULL;
     char *envp2 = NULL;
     int result = 0;
@@ -61,7 +67,10 @@ int parsing_path(char **all_argv, char *argv, char **envp)
     if (manage_result(&result, all_argv, test, envp) == 0)
         return (0);
     if (result == -1) {
-        my_printf("%s: Command not found.\n", argv);
+        if (access(argv, X_OK) == -1)
+            my_printf("%s: Command not found.\n", argv);
+        else
+            launch_command(all_argv, envp, argv);
         return (0);
     }
     return (0);
