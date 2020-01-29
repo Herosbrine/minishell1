@@ -58,6 +58,12 @@ char *one_space(char *buffer)
 
     save = malloc(sizeof(char) * my_strlen(buffer) + 1);
     while (buffer[i] != '\0') {
+        if (buffer[i] == '\t')
+            buffer[i] = ' ';
+        i++;
+    }
+    i = 0;
+    while (buffer[i] != '\0') {
         if (buffer[i] == ' ') {
             i++;
             if (buffer[i] != ' ') {
