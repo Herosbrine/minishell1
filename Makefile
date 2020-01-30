@@ -14,13 +14,13 @@ CFLAGS = -W -Wall -Wextra
 NAME = mysh
 
 SRC =	src/printf/my_putchar.c \
-		src/printf/my_putstr.c 	\
+		src/printf/my_putstr.c  \
 		src/printf/my_put_nbr.c 	\
-		src/printf/my_revstr.c 	\
-		src/printf/my_strlen.c 	\
-		src/printf/my_printf.c 	\
-		src/printf/flag.c		\
-		src/printf/my_getnbr.c 	\
+		src/printf/my_revstr.c  \
+		src/printf/my_strlen.c  \
+		src/printf/my_printf.c  \
+		src/printf/flag.c \
+		src/printf/my_getnbr.c  \
 		src/printf/my_put_hexa_max.c \
 		src/printf/my_put_octal.c \
 		src/printf/my_put_nbr2.c  \
@@ -34,8 +34,8 @@ SRC =	src/printf/my_putchar.c \
 		src/find_path.c \
 		src/one_space.c \
 		src/read_user_input.c \
-		src/my_strncomp.c  \
-		src/shell_loop.c	\
+		src/my_strncomp.c \
+		src/shell_loop.c \
 		src/my_exit.c \
 		src/my_str_envp_array.c \
 		src/count_word_envp.c \
