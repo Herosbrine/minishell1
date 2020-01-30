@@ -18,10 +18,10 @@ int *new_pwd(char **envp)
 {
     int i = 0, a = 0;
     char *toto = NULL, *save = NULL;
+    char pwd[PATH_MAX];
 
     save = malloc(sizeof(char) * 100);
     toto = "PWD=";
-    char pwd[PATH_MAX];
     getcwd(pwd, sizeof(pwd));
     while (envp[i] != NULL) {
         if (my_strcmp(envp[i], toto, 3) == 0) {
