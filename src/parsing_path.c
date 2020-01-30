@@ -21,11 +21,15 @@ int segfault_check(int status)
         if (SIGFPE == status)
             write(2, "Floating exception", 18);
         if (SIGABRT == status)
-            write(2, "Aborted", 7);
+            write(2, "Abort", 7);
         if (SIGILL == status)
             write(2, "Illegal instruction", 19);
+        if (SIGSYS == status)
+            write(2, "Bad System Call", 15);
+        if (SIGTRAP == status)
+            write(2, "Trace/Breakpoint Trap", 21);
         if (WCOREDUMP(status))
-            write(2, " (core dumped)",14);
+            write(2, " (core dumped)", 14);
         write(2, "\n", 1);
     }
     return (0);
