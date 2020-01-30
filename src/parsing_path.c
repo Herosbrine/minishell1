@@ -19,9 +19,9 @@ int segfault_check(int status)
         write(2, strsignal(WTERMSIG(status)),
         my_strlen(strsignal(WTERMSIG(status))));
         if (SIGFPE == status)
-            write(2, "Floating exception", 32);
+            write(2, "Floating exception", 18);
         if (SIGABRT == status)
-            write(2, "Aborted", 21);
+            write(2, "Aborted", 7);
         if (WCOREDUMP(status))
             write(2, " (core dumped)",14);
         write(2, "\n", 1);
