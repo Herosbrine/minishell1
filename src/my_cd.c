@@ -28,14 +28,16 @@ int my_str_envp_ar(char *buffer)
     return (0);
 }
 
-int manage_cd(char **envp, char *envi, char *path)
+int manage_cd(char **envp, char *envi, char *path, char **argv)
 {
     if (path == NULL || path[0] == '~') {
         my_str_envp_ar(envi);
         new_pwd(envp);
         return (0);
     }
-    if (chdir(path) == 0) {
+    if ((path[0] == '-' && path[1] == 'P' &&
+        chdir(argv[2]) == 0) || (path[0] == '-' && path[1] == 'L'&&
+        chdir(argv[2]) == 0) || chdir(path) == 0) {
         new_pwd(envp);
         return (0);
     }
@@ -61,11 +63,11 @@ int my_cd(char **argv, char **envp, char *envi, t_data *cordonnee)
     dest = "cd";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 2) == 0) {
-            if (argv[1] != NULL && argv[1][0] == '-') {
+            if (argv[1] != NULL && argv[1][0] == '-' && argv[1][1] == '\0') {
                 my_cd_prev_dir(cordonnee);
                 return (0);
             }
-            if (manage_cd(envp, envi, argv[1]) == 0) {
+            if (manage_cd(envp, envi, argv[1], argv) == 0) {
                 save_pwd(cordonnee);
                 return (0);
             }
