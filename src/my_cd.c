@@ -65,6 +65,7 @@ int my_cd(char **argv, char **envp, char *envi, t_data *cordonnee)
         if (my_strcmp(argv[i], dest, 2) == 0) {
             if (argv[1] != NULL && argv[1][0] == '-' && argv[1][1] == '\0') {
                 my_cd_prev_dir(cordonnee);
+                new_pwd(envp);
                 return (0);
             }
             if (manage_cd(envp, envi, argv[1], argv) == 0) {
