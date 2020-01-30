@@ -13,17 +13,17 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
-int segfault_check(int *status)
+int segfault_check(int status)
 {
-    if (WIFSIGNALED(*status)) {
-        write(2, strsignal(WTERMSIG(*status)),
-        my_strlen(strsignal(WTERMSIG(*status))));
-        if (WCOREDUMP(*status))
+    if (WIFSIGNALED(status)) {
+        write(2, strsignal(WTERMSIG(status)),
+        my_strlen(strsignal(WTERMSIG(status))));
+        if (SIGFPE == status)
+            write(2, "Floating exception", 32);
+        if (SIGABRT == status)
+            write(2, "Aborted", 21);
+        if (WCOREDUMP(status))
             write(2, " (core dumped)",14);
-        if (SIGFPE == *status)
-            write(2, "Floating exception (core dumped)", 32);
-        if (SIGABRT == *status)
-            write(2, "Aborted (core dumped)", 21);
         write(2, "\n", 1);
     }
     return (0);
@@ -46,7 +46,7 @@ int launch_command(char **argv,  char **env, char *path)
     }
     else
         wait(&status);
-    segfault_check(&status);
+    segfault_check(status);
     return 0;
 }
 
