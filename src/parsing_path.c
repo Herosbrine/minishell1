@@ -13,12 +13,24 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
+int segfault_check(int *status)
+{
+    if (WIFSIGNALED(*status)) {
+        write(2, strsignal(WTERMSIG(*status)),
+        my_strlen(strsignal(WTERMSIG(*status))));
+        if (WCOREDUMP(*status))
+            write(2, " (core dumped)",14);
+        write(2, "\n", 1);
+    }
+    return (0);
+}
+
 int launch_command(char **argv,  char **env, char *path)
 {
     pid_t pid;
     int status = 0;
-    pid = fork();
 
+    pid = fork();
     if (pid == -1) {
         perror("fork");
         return 1;
@@ -30,13 +42,7 @@ int launch_command(char **argv,  char **env, char *path)
     }
     else
         wait(&status);
-    if (WIFSIGNALED(status)) {
-        write(2, strsignal(WTERMSIG(status)),
-        my_strlen(strsignal(WTERMSIG(status))));
-        if (WCOREDUMP(status))
-            write(2, " (core dumped)",14);
-        write(2, "\n", 1);
-    }
+    segfault_check(&status);
     return 0;
 }
 
