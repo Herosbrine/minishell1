@@ -22,6 +22,8 @@ int segfault_check(int status)
             write(2, "Floating exception", 18);
         if (SIGABRT == status)
             write(2, "Aborted", 7);
+        if (SIGILL == status)
+            write(2, "Illegal instruction", 19);
         if (WCOREDUMP(status))
             write(2, " (core dumped)",14);
         write(2, "\n", 1);
