@@ -52,15 +52,18 @@ int my_unsetenv_condition(int *y, char *dest, char **argv, t_data *cordonnee)
     return (0);
 }
 
-int my_unsetenv(char **argv)
+int my_unsetenv(char **argv, t_data *cordonnee)
 {
     int i = 0;
     char *dest = NULL;
+    int y = 1;
 
     dest = "unsetenv";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 8) == 0) {
+            my_unsetenv_condition(&y, dest, argv, cordonnee);
             return (0);
+            i++;
         }
         return (1);
     }

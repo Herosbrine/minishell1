@@ -24,10 +24,10 @@ char **my_str_envp_array(int *a, char *buffer)
             i++;
         }
         buffer = &buffer[i+1];
-        a_position[k] = temp;
+        a_position[k] = my_strdup(temp);
+        free(temp);
         k++;
         r++;
-        i = 0;
     }
     a_position[k] = NULL;
     return (a_position);
