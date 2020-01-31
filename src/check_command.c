@@ -21,10 +21,10 @@ int check_command(char **argv, char **envp, t_data *cordonnee)
         return (0);
     if (my_cd(argv, envp, envi, cordonnee) == 0)
         return (0);
-    if (my_unsetenv(argv, cordonnee) == 0)
+    if (my_unsetenv(argv) == 0)
         return (0);
     my_exit(argv);
-    if (my_setenv(argv, cordonnee) == 0)
+    if (my_setenv(argv) == 0)
         return (0);
     if (parsing_path(argv, argv[0], envp) == 0)
         return (0);

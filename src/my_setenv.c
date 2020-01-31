@@ -73,7 +73,7 @@ int my_setenv_condition(char **argv, t_data *cordonnee)
     return (0);
 }
 
-int my_setenv(char **argv, t_data *cordonnee)
+int my_setenv(char **argv)
 {
     int i = 0;
     char *dest = NULL;
@@ -81,7 +81,6 @@ int my_setenv(char **argv, t_data *cordonnee)
     dest = "setenv";
     while (argv[i] != NULL) {
         if (my_strcmp(argv[i], dest, 6) == 0) {
-            my_setenv_condition(argv, cordonnee);
             return (0);
         }
         i++;
