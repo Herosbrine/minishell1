@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-CC	=	gcc
+CC	=	gcc -g3
 
 RM	=	 rm -rf
 
