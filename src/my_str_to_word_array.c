@@ -25,8 +25,7 @@ char **position_a(int *a, char *buffer)
             i++;
         }
         buffer = &buffer[i+1];
-        a_position[k] = my_strdup(temp);
-        free(temp);
+        a_position[k] = temp;
         k++;
         r++;
     }
