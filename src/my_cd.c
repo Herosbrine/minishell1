@@ -35,8 +35,8 @@ int manage_cd(char **envp, char *envi, char *path, char **argv)
         new_pwd(envp);
         return (0);
     }
-    if ((path[0] == '-' && path[1] == 'P' &&
-        chdir(argv[2]) == 0) || (path[0] == '-' && path[1] == 'L'&&
+    if ((path[0] == '-' && path[1] == 'p' &&
+        chdir(argv[2]) == 0) || (path[0] == '-' && path[1] == 'l'&&
         chdir(argv[2]) == 0) || chdir(path) == 0) {
         new_pwd(envp);
         return (0);
