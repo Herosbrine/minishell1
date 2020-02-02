@@ -21,7 +21,7 @@ int segfault_check(int status)
         if (SIGFPE == status)
             write(2, "Floating exception", 18);
         if (SIGABRT == status)
-            write(2, "Abort", 7);
+            write(2, "Abort", 5);
         if (SIGILL == status)
             write(2, "Illegal instruction", 19);
         if (SIGSYS == status)
